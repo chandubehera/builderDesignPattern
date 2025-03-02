@@ -1,29 +1,33 @@
 package com.dp.demo.service;
 
+import com.dp.demo.dto.OrderRequestDTO;
+import com.dp.demo.dto.OrderResponseDTO;
 import com.dp.demo.entity.Order;
 import com.dp.demo.repository.OrderRepository;
-import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 @Service
 public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
-    @Autowired
-    private EntityManager entityManager;
 
-    @Transactional
-    public Order createOrder(Order order){
-        Order savedOrder = new Order.OrderBuilder().setCustomerName(order.getCustomerName()).setProduct(order.getProduct()).setQuantity(order.getQuantity()).
-                setPrice(order.getPrice()).setShippingAddress(order.getShippingAddress()).setPaymentMethod(order.getPaymentMethod()).build();
-        orderRepository.save(savedOrder);
-        entityManager.flush();  // ✅ Forces DB insert before fetching ID
-        System.out.println("Saved Order ID (After Flush): " + order.getId());
 
-        return order;
+    public OrderResponseDTO createOrder(OrderRequestDTO requestDTO){
+        Order order = Order.builder().customerName(requestDTO.getCustomerName())
+                .product(requestDTO.getProduct())
+                .quantity(requestDTO.getQuantity())
+                .price(requestDTO.getPrice())
+                .shippingAddress(requestDTO.getShippingAddress())
+                .paymentMethod(requestDTO.getPaymentMethod())
+                .orderDate(LocalDateTime.now()).build();
+
+        //save to database
+        Order savedOrder = orderRepository.save(order);
+
+        return OrderResponseDTO.builder().id(savedOrder.getId()).build();
     }
-
 }

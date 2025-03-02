@@ -1,14 +1,11 @@
 package com.dp.demo.dto;
 
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
 public class OrderResponseDTO {
     private Long id;
-
-    public OrderResponseDTO(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }
 

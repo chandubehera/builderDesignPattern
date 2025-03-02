@@ -2,11 +2,18 @@ package com.dp.demo.entity;
 
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ORDERS")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order {
 
     @Id
@@ -21,7 +28,7 @@ public class Order {
     private String orderStatus;
     private LocalDateTime orderDate;
 
-    public Order(){
+    /*public Order(){
 
     }
     private Order(OrderBuilder builder){
@@ -125,5 +132,5 @@ public class Order {
 
     public LocalDateTime getOrderDate() {
         return orderDate;
-    }
+    }*/
 }
