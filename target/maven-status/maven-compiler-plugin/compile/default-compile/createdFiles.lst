@@ -1,6 +1,6 @@
-com\dp\test\dp\service\OrderService.class
-com\dp\test\dp\controller\OrderController.class
-com\dp\test\dp\model\Order.class
-com\dp\test\dp\model\Order$OrderBuilder.class
-com\dp\test\dp\repository\OrderRepository.class
-com\dp\test\dp\DpApplication.class
+com\dp\test\service\OrderService.class
+com\dp\test\DpApplication.class
+com\dp\test\model\Order$OrderBuilder.class
+com\dp\test\model\Order.class
+com\dp\test\repository\OrderRepository.class
+com\dp\test\controller\OrderController.class
